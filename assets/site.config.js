@@ -5,7 +5,7 @@ window.SITE = {
     google: ''
   },
   analytics: {
-    yandexMetrikaId: '',
+    yandexMetrikaId: '109807317',
     googleAnalyticsId: '',
     googleAdsId: ''
   },
