@@ -29,6 +29,6 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: sitemap.xml
+Sitemap: https://2020yvwvy2020.github.io/sitemap.xml
 
 # Краткое описание сайта для LLM: /llms.txt
