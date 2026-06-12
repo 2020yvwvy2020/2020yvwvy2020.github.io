@@ -208,7 +208,7 @@
       });
     }
 
-    var mq = window.matchMedia('(min-width: 768px)');
+    var mq = window.matchMedia('(min-width: 1024px)');
     var orderVisible = false;
 
     function setVisible(show) {
@@ -303,7 +303,7 @@
     });
 
     window.addEventListener('resize', function () {
-      if (window.innerWidth >= 768) setMenuOpen(false);
+      if (window.innerWidth >= 1024) setMenuOpen(false);
     });
   }
 
