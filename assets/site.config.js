@@ -1,7 +1,7 @@
 window.SITE = {
   url: 'https://2020yvwvy2020.github.io/',
   verify: {
-    yandex: '',
+    yandex: '602cea4a67ce67a4',
     google: ''
   },
   analytics: {
