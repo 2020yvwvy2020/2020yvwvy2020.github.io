@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="! 8 ! >=;09=">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#071428"/>
+      <stop offset="55%" stop-color="#0E4D8C"/>
+      <stop offset="100%" stop-color="#0E7490"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="980" cy="120" r="180" fill="#22D3EE" opacity="0.12"/>
+  <circle cx="180" cy="520" r="220" fill="#2B6CB0" opacity="0.18"/>
+  <text x="80" y="220" fill="#ffffff" font-family="Arial, sans-serif" font-size="64" font-weight="700">! 8 ! >=;09=</text>
+  <text x="80" y="300" fill="#E8EEF4" font-family="Arial, sans-serif" font-size="34">D>@<;5=85 ?>;8A0 70 60 <8=CB 157 2878B0 2 >D8A</text>
+  <text x="80" y="390" fill="#A5F3FC" font-family="Arial, sans-serif" font-size="28">D8F80;L=K5 ?>;8AK &#8226; 070 !! &#8226; 15+ AB@0E>2KE :><?0=89</text>
+  <rect x="80" y="450" width="320" height="72" rx="16" fill="#0891B2"/>
+  <text x="240" y="498" fill="#ffffff" font-family="Arial, sans-serif" font-size="30" font-weight="700" text-anchor="middle">8 (950) 767-85-75</text>
+</svg>

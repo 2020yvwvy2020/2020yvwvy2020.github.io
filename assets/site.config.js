@@ -1,0 +1,33 @@
+window.SITE = {
+  url: '',
+  verify: {
+    yandex: '',
+    google: ''
+  },
+  analytics: {
+    yandexMetrikaId: '',
+    googleAnalyticsId: '',
+    googleAdsId: ''
+  },
+  legal: {
+    entityName: '',
+    inn: '',
+    ogrn: '',
+    address: '',
+    role: 'Консультации и помощь в оформлении полисов ОСАГО и КАСКО. Сайт не является страховой компанией.',
+    phone: '+79507678575',
+    email: '2020yvwvy2020@gmail.com'
+  },
+  partner: {
+    legalName: 'ООО «Страховые партнеры»',
+    inn: '9729069737',
+    kpp: '772501001',
+    ogrn: '1177746324623',
+    legalAddress: '115432, г. Москва, пр-кт Андропова, д. 10, пом. 98',
+    actualAddress: '123112, г. Москва, Пресненская наб., д. 6, стр. 2',
+    website: 'https://pampadu.ru/',
+    b2cWebsite: 'https://b2c.pampadu.ru/',
+    requisitesUrl: 'https://help.pampadu.ru/article/2814',
+    contactsUrl: 'https://pampadu.ru/contacts/'
+  }
+};
