@@ -15,6 +15,19 @@
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
   }
 
+  function getScrollOffset() {
+    var header = document.querySelector('header');
+    var base = header ? Math.ceil(header.getBoundingClientRect().height) : 72;
+    return base + 8;
+  }
+
+  function getScrollBottomInset() {
+    var bar = document.getElementById('mobile-sticky-cta');
+    if (!bar || bar.hidden) return 0;
+    if (window.matchMedia('(min-width: 768px)').matches) return 0;
+    return Math.ceil(bar.getBoundingClientRect().height) + 8;
+  }
+
   function scrollToElement(el, options) {
     options = options || {};
     if (!el) return;
@@ -24,21 +37,48 @@
     var useSmooth = !instant &&
       env.supportsSmoothScroll !== false &&
       scrollBehavior() === 'smooth';
+    var offset = typeof options.offset === 'number' ? options.offset : getScrollOffset();
+    var bottomInset = getScrollBottomInset();
+    var rect = el.getBoundingClientRect();
+    var absoluteTop = rect.top + (window.pageYOffset || document.documentElement.scrollTop || 0);
+    var maxScroll = Math.max(
+      0,
+      (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight
+    );
+    var targetTop = Math.min(Math.max(0, absoluteTop - offset), maxScroll);
+
+    if (bottomInset > 0) {
+      var visibleBottom = targetTop + window.innerHeight - bottomInset;
+      var elementBottom = absoluteTop + rect.height;
+      if (elementBottom > visibleBottom) {
+        targetTop = Math.min(maxScroll, Math.max(0, elementBottom - window.innerHeight + bottomInset + 8));
+      }
+    }
 
     if (useSmooth) {
       try {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.scrollTo({ top: targetTop, behavior: 'smooth' });
         return;
       } catch (e) {}
     }
 
-    try {
-      el.scrollIntoView(true);
-    } catch (e2) {
-      var top = el.getBoundingClientRect().top +
-        (window.pageYOffset || document.documentElement.scrollTop || 0);
-      window.scrollTo(0, top);
+    window.scrollTo(0, targetTop);
+  }
+
+  function scrollToHash(hash, options) {
+    if (!hash || hash === '#') return false;
+    var id = decodeURIComponent(String(hash).replace(/^#/, ''));
+    if (!id) return false;
+
+    if (id === 'oformit-polisa') {
+      scrollToOrderTarget(options);
+      return true;
     }
+
+    var el = document.getElementById(id);
+    if (!el) return false;
+    scrollToElement(el, options);
+    return true;
   }
 
   function scrollWindowTop(instant) {
@@ -206,15 +246,9 @@
         trackGoal('click_call_sticky');
       });
     }
-    if (orderLink) {
-      orderLink.addEventListener('click', function (e) {
-        e.preventDefault();
-        scrollToOrderTarget();
-        trackGoal('click_order_form');
-      });
-    }
+    /* #oformit-polisa in sticky bar is handled by initScrollLinks */
 
-    var mq = window.matchMedia('(min-width: 1024px)');
+    var mq = window.matchMedia('(min-width: 768px)');
     var orderVisible = false;
 
     function setVisible(show) {
@@ -250,12 +284,44 @@
   }
 
   function initScrollLinks() {
-    document.querySelectorAll('a[href="#oformit-polisa"]').forEach(function (link) {
-      if (link.closest('#mobile-sticky-cta')) return;
+    var menu = document.getElementById('mobile-menu');
+
+    function closeMobileMenu() {
+      if (!menu || !menu.classList.contains('open')) return;
+      var toggle = document.getElementById('menu-toggle');
+      if (toggle) toggle.click();
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      if (link.hasAttribute('data-scroll-top')) return;
+
+      var href = link.getAttribute('href');
+      if (!href || href === '#') return;
+
+      var id = decodeURIComponent(href.slice(1));
+      if (!id || !document.getElementById(id)) return;
+
       link.addEventListener('click', function (e) {
         e.preventDefault();
-        scrollToOrderTarget();
-        trackGoal('click_order_form');
+        var fromMobileMenu = menu && menu.contains(link);
+        if (fromMobileMenu) closeMobileMenu();
+
+        var runScroll = function () {
+          var isOrder = id === 'oformit-polisa';
+          scrollToHash(href, { instant: false });
+          if (isOrder) trackGoal('click_order_form');
+          if (history.replaceState) {
+            history.replaceState(null, '', getPagePath() + href);
+          }
+        };
+
+        if (fromMobileMenu) {
+          window.requestAnimationFrame(function () {
+            window.requestAnimationFrame(runScroll);
+          });
+        } else {
+          runScroll();
+        }
       });
     });
   }
@@ -315,8 +381,22 @@
 
   function initPolicyCheck() {
     var NSIS_TS_URL = 'https://nsis.ru/products/osago/check/';
-    var PLATE_RE = /^[ABEKMHOPCTYXАВЕКМНОРСТУХ]\d{3}[ABEKMHOPCTYXАВЕКМНОРСТУХ]{2}\d{2,3}$/u;
+    var PLATE_RE = /^[ABEKMHOPCTYX]\d{3}[ABEKMHOPCTYX]{2}\d{2,3}$/;
     var VIN_RE = /^[A-HJ-NPR-Z0-9]{17}$/i;
+    var PLATE_LETTER_MAP = {
+      'A': 'A', 'А': 'A',
+      'B': 'B', 'В': 'B', 'V': 'B',
+      'E': 'E', 'Е': 'E',
+      'K': 'K', 'К': 'K',
+      'M': 'M', 'М': 'M',
+      'H': 'H', 'Н': 'H',
+      'O': 'O', 'О': 'O',
+      'P': 'P', 'Р': 'P',
+      'C': 'C', 'С': 'C',
+      'T': 'T', 'Т': 'T',
+      'Y': 'Y', 'У': 'Y',
+      'X': 'X', 'Х': 'X'
+    };
 
     var tabs = document.querySelectorAll('.check-tab');
     var panelPolicy = document.getElementById('panel-policy');
@@ -327,11 +407,28 @@
     var copyNotice = document.getElementById('check-copy-notice');
 
     function normalizeVehicle(value) {
-      return value.trim().toUpperCase().replace(/\s/g, '');
+      var compact = value.trim().toUpperCase().replace(/\s/g, '');
+      var out = '';
+      var i;
+      for (i = 0; i < compact.length; i++) {
+        var ch = compact.charAt(i);
+        if (/[0-9]/.test(ch)) {
+          out += ch;
+          continue;
+        }
+        var mapped = PLATE_LETTER_MAP[ch];
+        if (mapped) {
+          out += mapped;
+          continue;
+        }
+        return null;
+      }
+      return out;
     }
 
     function isValidVehicle(value) {
       var v = normalizeVehicle(value);
+      if (!v) return false;
       return PLATE_RE.test(v) || VIN_RE.test(v);
     }
 
@@ -370,7 +467,7 @@
     function runPolicyCheck() {
       if (!vehicleInput) return;
       var value = normalizeVehicle(vehicleInput.value);
-      if (!isValidVehicle(value)) {
+      if (!value || !isValidVehicle(vehicleInput.value)) {
         vehicleInput.classList.add('invalid');
         if (vehicleError) vehicleError.classList.add('visible');
         return;

@@ -53,7 +53,7 @@
 </head>
 <body>
   <div class="wrap">
-    <a id="home-link" class="back" href="/">← На главную</a>
+    <a id="home-link" class="back" href="index.html">← На главную</a>
     <h1>Политика конфиденциальности</h1>
     <p>Настоящая политика определяет порядок обработки и защиты персональных данных пользователей сайта «Страхование ОСАГО / КАСКО» в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных».</p>
     <p>Дата публикации: 12 июня 2026 г. Актуальная версия размещена по адресу <a href="privacy.html">privacy.html</a>.</p>
@@ -140,8 +140,8 @@
   <script>
     (function () {
       var root = window.SITE_ROOT || '/';
-      var link = document.getElementById('home-link');
-      if (link) link.href = root;
+      var fav = document.querySelector('link[rel="icon"]');
+      if (fav) fav.href = root + 'favicon.svg';
       renderSiteLegal('privacy-operator', { showConfigHint: true });
     })();
   </script>

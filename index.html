@@ -373,15 +373,55 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 5rem;
+      scroll-padding-top: calc(3.75rem + env(safe-area-inset-top, 0px) + 0.75rem);
+      scroll-padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
     }
 
-    #oformit-polisa,
-    #oformit-polisa,
+    @media (min-width: 640px) {
+      html {
+        scroll-padding-top: calc(4.25rem + env(safe-area-inset-top, 0px) + 0.75rem);
+      }
+    }
+
+    @media (min-width: 768px) {
+      html {
+        scroll-padding-bottom: 0;
+      }
+    }
+
+    section[id],
+    main[id],
+    aside[id] {
+      scroll-margin-top: calc(3.75rem + env(safe-area-inset-top, 0px) + 0.75rem);
+      scroll-margin-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    @media (min-width: 640px) {
+      section[id],
+      main[id],
+      aside[id] {
+        scroll-margin-top: calc(4.25rem + env(safe-area-inset-top, 0px) + 0.75rem);
+      }
+    }
+
+    @media (min-width: 768px) {
+      section[id],
+      main[id],
+      aside[id] {
+        scroll-margin-bottom: 0;
+      }
+    }
+
     #oformit-polisa-target {
-      scroll-margin-top: calc(5.5rem - 1cm);
+      scroll-margin-top: calc(3.75rem + env(safe-area-inset-top, 0px) + 0.75rem);
+    }
+
+    @media (min-width: 640px) {
+      #oformit-polisa-target {
+        scroll-margin-top: calc(4.25rem + env(safe-area-inset-top, 0px) + 0.75rem);
+      }
     }
 
     .iframe-wrap {
@@ -1482,9 +1522,9 @@
 
         <div id="panel-policy" class="check-panel active" role="tabpanel" aria-labelledby="tab-policy">
           <label for="check-vehicle" class="block text-sm font-semibold text-heading mb-2">Госномер или VIN автомобиля</label>
-          <input type="text" id="check-vehicle" class="check-input" placeholder="А123БВ777 или XTA00000000000000" autocomplete="off" spellcheck="false">
-          <p class="check-hint">Достаточно указать госномер или VIN — проверка бесплатна, регистрация не нужна</p>
-          <p id="check-vehicle-error" class="check-error" role="alert">Введите корректный госномер (например, А123БВ777) или VIN из 17 символов</p>
+          <input type="text" id="check-vehicle" class="check-input" placeholder="А123АА777 или XTA00000000000000" autocomplete="off" spellcheck="false">
+          <p class="check-hint">Достаточно указать госномер или VIN — проверка бесплатна, регистрация не нужна. В номере используются только буквы А, В, Е, К, М, Н, О, Р, С, Т, У, Х.</p>
+          <p id="check-vehicle-error" class="check-error" role="alert">Введите корректный госномер (например, А123АА777) или VIN из 17 символов. Буква «Б» и другие символы в номере не используются.</p>
           <div class="flex flex-col sm:flex-row gap-3 mt-5">
             <button type="button" id="btn-check-policy" class="btn-primary">
               <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
