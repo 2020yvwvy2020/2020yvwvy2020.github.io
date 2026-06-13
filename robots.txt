@@ -29,7 +29,7 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://2020yvwvy2020.github.io/sitemap.xml
-Sitemap: https://2020yvwvy2020.github.io/sitemap.txt
+Sitemap: https://osagovrn.github.io/sitemap.xml
+Sitemap: https://osagovrn.github.io/sitemap.txt
 
 # Краткое описание сайта для LLM: /llms.txt

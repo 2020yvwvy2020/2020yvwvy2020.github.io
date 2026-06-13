@@ -8,7 +8,7 @@
 
 В `assets/site.config.js` укажите:
 
-- `url` — полный адрес сайта (`https://ваш-домен.ru/` или `https://user.github.io/osago/`)
+- `url` — полный адрес сайта (`https://osagovrn.github.io/` или свой домен)
 - `analytics` — ID Яндекс.Метрики / Google Analytics
 - `verify` — коды верификации для поисковиков
 - `legal` — реквизиты оператора сайта (наименование, ИНН, ОГРН, адрес) для футера и `privacy.html`
