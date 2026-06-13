@@ -1,5 +1,11 @@
 window.SITE = {
   url: 'https://osagovrn.github.io/',
+  region: {
+    coverage: 'По всей России',
+    mode: 'Дистанционно, без визита в офис',
+    seoLabel: 'По всей России — дистанционно',
+    exampleCities: ['Воронеж', 'Москва', 'Санкт-Петербург', 'любой город РФ']
+  },
   verify: {
     yandex: 'ea57d1fd75c2d5d0',
     google: ''

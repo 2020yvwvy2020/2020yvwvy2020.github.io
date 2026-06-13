@@ -13,40 +13,48 @@
   2. npx serve -l 3001 .
   3. Открыть http://localhost:3001
 
-  Или просто открыть index.html в браузере.
-
 КОНТАКТЫ НА САЙТЕ
   Телефон: 8 (950) 767-85-75
   Email:   2020yvwvy2020@gmail.com
 
 ЧТО УЖЕ ГОТОВО
   - Лендинг ОСАГО/КАСКО (index.html)
-  - Форма заявки, FAQ, проверка полиса (НСИС)
+  - География: по всей России, дистанционно (блок на сайте)
+  - Блок «Как это работает» (3 шага)
+  - Форма заявки (виджет Pampadu), FAQ, проверка НСИС
+  - Липкая кнопка «Позвонить» на мобильном
+  - og-image.png для соцсетей
   - privacy.html, 404.html
-  - SEO: sitemap.xml, robots.txt, llms.txt
-  - Верификация Яндекс + Google
-  - Яндекс.Метрика: 109807317
+  - SEO: Вебмастер, Google Search Console, sitemap, Метрика
+  - robots.txt с Host: osagovrn.github.io
   - Деплой: GitHub Pages (osagovrn.github.io)
-  - Партнёр: ООО «Страховые партнеры» (Pampadu)
 
 НАСТРОЙКИ
-  assets/site.config.js  — URL, аналитика, реквизиты
+  assets/site.config.js  — URL, регион, аналитика, реквизиты
   assets/site.js         — логика сайта
   assets/env.js          — пути, HTTPS
 
-ЧТО ДОРАБОТАТЬ
-  - Загрузить robots.txt на GitHub (Host: osagovrn.github.io)
-  - Вебмастер: sitemap, переобход, диагностика, метрика — см. ИНСТРУКЦИЯ_ДЛЯ_ВАС.txt
-  - Google Search Console + sitemap
-  - Яндекс.Бизнес
-  - Заполнить реквизиты оператора (legal.*) — шаблон: assets/legal.template.js
-  - Переезд на www — ждём отмены/завершения заявки, не трогать
+ЧТО ОСТАЛОСЬ (по желанию)
+  - Загрузить обновления на GitHub (см. ниже)
+  - Реквизиты оператора (legal.*) — когда будете готовы
+  - Яндекс.Директ — тексты в ДИРЕКТ_ОБЪЯВЛЕНИЯ.txt
+  - Переезд на www в Вебмастере — ждём, не трогать
 
-ИНСТРУКЦИЯ ДЛЯ ВАС
-  C:\Users\2020y\Projects\osago\ИНСТРУКЦИЯ_ДЛЯ_ВАС.txt
+ЗАГРУЗИТЬ НА GITHUB
+  index.html
+  assets/site.config.js
+  assets/site.js
+  og-image.png
+  og-image.svg
+  llms.txt
+
+ИНСТРУКЦИИ
+  ИНСТРУКЦИЯ_ДЛЯ_ВАС.txt
+  ДИРЕКТ_ОБЪЯВЛЕНИЯ.txt
 
 БЭКАП
   C:\Users\2020y\Projects\osago-backup.zip
+  scripts\backup.ps1
 
 ДРУГОЙ ПРОЕКТ
   Магазин: C:\Users\2020y\Projects\magazin

@@ -200,6 +200,12 @@
     if (!bar) return;
 
     var orderLink = bar.querySelector('.mobile-sticky-cta__order');
+    var callLink = bar.querySelector('.mobile-sticky-cta__call');
+    if (callLink) {
+      callLink.addEventListener('click', function () {
+        trackGoal('click_call_sticky');
+      });
+    }
     if (orderLink) {
       orderLink.addEventListener('click', function (e) {
         e.preventDefault();
@@ -223,7 +229,7 @@
     }
 
     function onScroll() {
-      setVisible(window.scrollY > 420);
+      setVisible(window.scrollY > 280);
     }
 
     if (orderSection && 'IntersectionObserver' in window) {
