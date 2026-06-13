@@ -1,7 +1,7 @@
 window.SITE = {
   url: 'https://osagovrn.github.io/',
   verify: {
-    yandex: '602cea4a67ce67a4',
+    yandex: 'ea57d1fd75c2d5d0',
     google: ''
   },
   analytics: {

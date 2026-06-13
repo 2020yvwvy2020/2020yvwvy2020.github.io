@@ -1,0 +1,54 @@
+ИНСТРУКЦИЯ ДЛЯ CURSOR AGENT — ПРОЕКТ «ОСАГО»
+=============================================
+Обновлено: 13.06.2026
+
+## 1. РАСПОЛОЖЕНИЕ
+   Путь: C:\Users\2020y\Projects\osago
+   Живой сайт: https://osagovrn.github.io/
+   GitHub: репозиторий osagovrn (Pages)
+
+## 2. СТЕК
+   - Статический HTML/CSS/JS (без npm-сборки обязательно)
+   - Tailwind CDN в index.html (опционально: npm run build:css)
+   - Деплой: GitHub Actions → .github/workflows/pages.yml
+
+## 3. ОКРУЖЕНИЕ
+   - Git НЕ установлен на машине пользователя
+   - Node.js есть (для npx serve, опционально tailwind)
+
+## 4. ЗАПУСК ЛОКАЛЬНО
+   cd C:\Users\2020y\Projects\osago
+   npx serve -l 3001 .
+   → http://localhost:3001
+
+## 5. КЛЮЧЕВЫЕ ФАЙЛЫ
+   index.html              — главная (~1800 строк)
+   assets/site.config.js   — URL, метрика, реквизиты, партнёр
+   assets/site.js          — меню, форма, виджет
+   assets/env.js           — base path, HTTPS redirect
+   assets/legal.js         — реквизиты в футере
+   privacy.html            — политика конфиденциальности
+   sitemap.xml, robots.txt — SEO
+
+## 6. site.config.js
+   url: https://osagovrn.github.io/
+   yandexMetrikaId: 109807317
+   verify.yandex: 602cea4a67ce67a4
+   legal.* — ПУСТО (нужно заполнить оператора)
+   partner — ООО «Страховые партнеры» / Pampadu
+
+## 7. ЧТО СДЕЛАНО
+   [x] Лендинг, форма, FAQ, НСИС-проверка
+   [x] GitHub Pages деплой на osagovrn.github.io
+   [x] URL обновлён в site.config, sitemap, robots, llms.txt
+   [ ] Залить обновления на GitHub (git не установлен)
+   [ ] Реквизиты оператора (legal)
+   [ ] Google Analytics
+
+## 8. БЭКАП
+   scripts/backup.ps1 → C:\Users\2020y\Projects\osago-backup.zip
+
+## 9. БЫСТРЫЙ СТАРТ
+   $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+   cd C:\Users\2020y\Projects\osago
+   npx serve -l 3001 .

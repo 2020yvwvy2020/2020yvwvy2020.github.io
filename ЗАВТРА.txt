@@ -1,0 +1,48 @@
+ОСАГО — заметки для продолжения работы
+=====================================
+Дата сохранения: 13.06.2026
+
+ПУТЬ К ПРОЕКТУ
+  C:\Users\2020y\Projects\osago
+
+ЖИВОЙ САЙТ
+  https://osagovrn.github.io/
+
+КАК ЗАПУСТИТЬ ЛОКАЛЬНО
+  1. cd C:\Users\2020y\Projects\osago
+  2. npx serve -l 3001 .
+  3. Открыть http://localhost:3001
+
+  Или просто открыть index.html в браузере.
+
+КОНТАКТЫ НА САЙТЕ
+  Телефон: 8 (950) 767-85-75
+  Email:   2020yvwvy2020@gmail.com
+
+ЧТО УЖЕ ГОТОВО
+  - Лендинг ОСАГО/КАСКО (index.html)
+  - Форма заявки, FAQ, проверка полиса (НСИС)
+  - privacy.html, 404.html
+  - SEO: sitemap.xml, robots.txt, llms.txt
+  - Верификация Яндекс + Google
+  - Яндекс.Метрика: 109807317
+  - Деплой: GitHub Pages (osagovrn.github.io)
+  - Партнёр: ООО «Страховые партнеры» (Pampadu)
+
+НАСТРОЙКИ
+  assets/site.config.js  — URL, аналитика, реквизиты
+  assets/site.js         — логика сайта
+  assets/env.js          — пути, HTTPS
+
+ЧТО ДОРАБОТАТЬ
+  - Загрузить обновлённые файлы на GitHub (sitemap, robots, site.config)
+  - Заполнить реквизиты оператора в site.config.js (legal.*)
+  - Google Analytics (если нужен)
+  - Установить Git для удобного деплоя
+  - Яндекс.Вебмастер / Google Search Console — добавить новый домен
+
+БЭКАП
+  C:\Users\2020y\Projects\osago-backup.zip
+
+ДРУГОЙ ПРОЕКТ
+  Магазин: C:\Users\2020y\Projects\magazin
